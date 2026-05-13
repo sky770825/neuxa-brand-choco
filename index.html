@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>匠魂 | 台灣精品 Bean-to-Bar 巧克力</title>
+<style>
+  :root {
+    --deep: #0d0d0d;
+    --gold: #c8860a;
+    --gold-light: #e0a420;
+    --white: #ffffff;
+    --gray: #1a1a1a;
+    --gray-light: #2a2a2a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    background: var(--deep);
+    color: var(--white);
+    line-height: 1.8;
+  }
+  h1, h2, h3 { font-weight: 300; letter-spacing: 0.05em; }
+  
+  /* ── Nav ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,134,10,0.2);
+    padding: 0 2rem;
+  }
+  nav .inner {
+    max-width: 1200px; margin:0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+  nav .logo {
+    font-size: 1.6rem; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+  nav .links { display: flex; gap: 2rem; list-style: none; }
+  nav .links a {
+    color: var(--white); text-decoration: none;
+    font-size: 0.9rem; letter-spacing: 0.1em;
+    transition: color 0.3s;
+  }
+  nav .links a:hover { color: var(--gold); }
+  
+  /* ── Hero ── */
+  .hero {
+    height: 100vh; min-height: 700px;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1206 40%, #0d0d0d 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset:0;
+    background: url('https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=1600&q=80') center/cover;
+    opacity: 0.25;
+  }
+  .hero .content { position: relative; z-index:2; padding: 2rem; }
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+  }
+  .hero .subtitle {
+    font-size: 1.2rem; color: rgba(255,255,255,0.8);
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+  }
+  .hero .cta {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    font-size: 0.95rem;
+    transition: all 0.4s;
+  }
+  .hero .cta:hover {
+    background: var(--gold);
+    color: var(--deep);
+  }
+  
+  /* ── Sections ── */
+  section { padding: 6rem 2rem; }
+  section .container { max-width: 1100px; margin:0 auto; }
+  section h2 {
+    font-size: 2.5rem;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 0.15em;
+  }
+  section .section-desc {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    max-width: 600px;
+    margin: 0 auto 4rem;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+  }
+  
+  /* ── Story ── */
+  .story-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .story-grid img {
+    width: 100%; border-radius: 4px;
+    border: 1px solid rgba(200,134,10,0.3);
+  }
+  .story-grid .text h3 {
+    font-size: 1.5rem; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .story-grid .text p {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  
+  /* ── Products ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  .product-card {
+    background: var(--gray);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(200,134,10,0.15);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200,134,10,0.5);
+  }
+  .product-card img {
+    width: 100%; height: 240px; object-fit: cover;
+  }
+  .product-card .info {
+    padding: 1.5rem;
+  }
+  .product-card .info h4 {
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+  .product-card .info p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+  }
+  .product-card .info .origin {
+    display: inline-block;
+    margin-top: 0.8rem;
+    padding: 0.2rem 0.8rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    border-radius: 20px;
+  }
+  
+  /* ── Process ── */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+  .process-step {
+    padding: 2rem 1rem;
+    background: var(--gray);
+    border-radius: 6px;
+    border: 1px solid rgba(200,134,10,0.1);
+    position: relative;
+  }
+  .process-step .num {
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.3;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .process-step h4 {
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+  .process-step p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.85rem;
+  }
+  
+  /* ── Gallery ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .gallery-grid img {
+    width: 100%; height: 280px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: opacity 0.3s;
+  }
+  .gallery-grid img:hover { opacity: 0.8; }
+  
+  /* ── Footer ── */
+  footer {
+    background: var(--gray);
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(200,134,10,0.2);
+  }
+  footer .container { max-width: 800px; margin:0 auto; }
+  footer .footer-logo {
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+  }
+  footer p {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+  
+  @media (max-width: 768px) {
+    .story-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    nav .links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    section h2 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <div class="logo">匠魂</div>
+    <ul class="links">
+      <li><a href="#story">品牌故事</a></li>
+      <li><a href="#products">精品系列</a></li>
+      <li><a href="#process">製程工法</a></li>
+      <li><a href="#gallery">工坊實景</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="content">
+    <h1>匠魂</h1>
+    <p class="subtitle">BEAN TO BAR · 台灣精品巧克力</p>
+    <a href="#story" class="cta">探索工坊</a>
+  </div>
+</section>
+
+<section id="story" style="background:var(--gray-light);">
+  <div class="container">
+    <h2>品牌故事</h2>
+    <p class="section-desc">從可可豆到巧克力磚，每一片都承載著匠人的靈魂</p>
+    <div class="story-grid">
+      <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=800&q=80" alt="Cacao beans">
+      <div class="text">
+        <h3>Bean-to-Bar 的堅持</h3>
+        <p>我們直接從中南美洲與非洲產地嚴選頂級可可豆，在台灣本地工坊完成所有工序——從烘焙、研磨、調溫到入模成型，全程不假他人之手。</p>
+        <p>每一批可可豆都有獨特風土印記，我們相信巧克力不只是一種甜點，更是一門連結土地、工藝與味覺的藝術。</p>
+        <p>匠魂，以職人精神為每一片巧克力注入靈魂。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="container">
+    <h2>精品系列</h2>
+    <p class="section-desc">單一產區 · 手工精製 · 限量發行</p>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=600&q=80" alt="Dark Chocolate Bar">
+        <div class="info">
+          <h4>厄瓜多 75% 黑巧克力</h4>
+          <p>花香與熱帶水果調性，尾韻帶有堅果香氣。單一莊園 Arriba Nacional 可可豆。</p>
+          <span class="origin">產地：厄瓜多</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=600&q=80" alt="Chocolate Truffles">
+        <div class="info">
+          <h4>松露巧克力禮盒</h4>
+          <p>手工製作的甘納許內餡，裹上 70% 黑巧克力外殼，撒上頂級可可粉。</p>
+          <span class="origin">限量 12 入</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=600&q=80" alt="Chocolate Making">
+        <div class="info">
+          <h4>馬達加斯加 82% 黑巧克力</h4>
+          <p>明亮的柑橘酸香與紅莓果調，層次豐富。Criollo 品種，微批次限量。</p>
+          <span class="origin">產地：馬達加斯加</span>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=600&q=80" alt="Artisan Chocolate">
+        <div class="info">
+          <h4>秘魯 70% 黑巧克力</h4>
+          <p>煙燻木質調與焦糖甜感，口感圓潤厚實。有機認證 Trinitario 可可豆。</p>
+          <span class="origin">產地：秘魯</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process" style="background:var(--gray-light);">
+  <div class="container">
+    <h2>製程工法</h2>
+    <p class="section-desc">從豆到磚，六道工序 · 全程手工監製</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="num">01</div>
+        <h4>選豆</h4>
+        <p>嚴選全球頂級產區可可豆，每批手工揀選剔除瑕疵。</p>
+      </div>
+      <div class="process-step">
+        <div class="num">02</div>
+        <h4>烘焙</h4>
+        <p>精準控溫，釋放可可豆獨特風味層次與香氣。</p>
+      </div>
+      <div class="process-step">
+        <div class="num">03</div>
+        <h4>研磨</h4>
+        <p>石磨機慢速研磨 48-72 小時，達 20 微米以下細膩質地。</p>
+      </div>
+      <div class="process-step">
+        <div class="num">04</div>
+        <h4>調溫</h4>
+        <p>大理石檯面手工調溫，確保可可脂結晶完美光澤。</p>
+      </div>
+      <div class="process-step">
+        <div class="num">05</div>
+        <h4>入模</h4>
+        <p>注入專屬模具，低溫靜置定型 24 小時。</p>
+      </div>
+      <div class="process-step">
+        <div class="num">06</div>
+        <h4>包裝</h4>
+        <p>手工蠟紙包裹，封存最佳風味，送達您手中。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <h2>工坊實景</h2>
+    <p class="section-desc">走進匠魂工坊，感受巧克力製作的溫度</p>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&q=80" alt="Cacao beans spread">
+      <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?w=600&q=80" alt="Chocolate pouring">
+      <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=600&q=80" alt="Chocolate bars">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">匠魂</div>
+    <p>台灣精品 Bean-to-Bar 巧克力工坊</p>
+    <p style="margin-top:1rem;">© 2024 匠魂 chocolate atelier. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
